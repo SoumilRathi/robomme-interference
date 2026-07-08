@@ -21,6 +21,7 @@ Memory helps most when the lesson is the most recent session (`k0`) and decays b
 - **Conditions:** `no-history`, `k0`, `k1`, `k3`, `k7` — the number of unrelated sessions sitting between the lesson and the query.
 - **Grid:** 9 task families × 9 systems × 5 conditions × 50 episodes = **18,450 rollouts** (369 / 369 cells complete).
 - **Finding:** perceptual memory systems improve success sharply when the relevant session is recent, then decay to the no-memory baseline as unrelated sessions accumulate. Recurrent variants stay flat throughout.
+- **Recovering it:** Retrieval-FrameSamp-Modul retrieves only the matching session instead of sampling the whole history, and stays near `45%` at `k7` where FrameSamp-Modul falls to `19.3%`.
 
 ## Headline result
 
@@ -49,6 +50,16 @@ Per-cell Wilson 95% intervals are in [`results/analysis/tables/main_success_rate
 - **The signal is clearest where the policy can already act.** The lift concentrates on easy and medium tasks (FrameSamp-Modul 38.0% and 28.5%, vs π₀.₅ 20.9% and 13.9%); hard tasks stay near the floor (15.2% vs 13.0%).
 
 Full tables and figures are in [`results/analysis/`](results/analysis).
+
+## Adding retrieval
+
+The released systems sample the whole history down to a fixed set of frames, so once unrelated sessions are present, only a few of those frames come from the lesson session, which is the likely cause of the performance drop. To fix this, Retrieval-FrameSamp-Modul adds a retrieval step to FrameSamp-Modul: it chunks the history using visual embeddings, finds the chunk that matches the current view, and passes only that chunk on. The full frame sampling budget then goes to the lesson.
+
+This holds the `k0` success rate through `k7` on seven of the nine families. Where FrameSamp-Modul falls from 45.3% at `k0` to 19.3% at `k7`, Retrieval-FrameSamp-Modul stays near 45% the whole way.
+
+![Per-family success across the released memory systems, with Retrieval-FrameSamp-Modul](results/analysis/figures/perfamily_retrieval_baseline.png)
+
+Retrieval is easy in this setup. The lesson session is always present and shares the query's task family, so a visual match reliably finds it. The rollouts are in `results/retrieval_rollouts.csv`.
 
 ## Repository layout
 

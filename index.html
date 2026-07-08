@@ -34,6 +34,27 @@
       href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%23234f7e'/><path d='M4 23 L12 8 L18 16 L28 25' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/></svg>"
     />
     <link rel="stylesheet" href="research.css?v=20260618a" />
+    <script>
+      // Arriving via an in-page anchor: start at the top and glide down to the
+      // section instead of hard-jumping. Runs only on initial load.
+      (function () {
+        var hash = window.location.hash;
+        if (!hash || hash.length < 2) return;
+        try {
+          history.replaceState(null, "", window.location.pathname + window.location.search);
+        } catch (e) {}
+        window.scrollTo(0, 0);
+        window.addEventListener("load", function () {
+          setTimeout(function () {
+            var target = document.querySelector(hash);
+            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+            try {
+              history.replaceState(null, "", window.location.pathname + window.location.search + hash);
+            } catch (e) {}
+          }, 300);
+        });
+      })();
+    </script>
   </head>
   <body>
     <nav class="topnav" aria-label="Section navigation">
@@ -43,6 +64,7 @@
         <a href="#tasks">Tasks</a>
         <a href="#systems">Systems</a>
         <a href="#results">Results</a>
+        <a href="#baseline">Retrieval</a>
         <a href="#showcase">Videos</a>
         <a href="#citation">Cite</a>
       </div>
@@ -126,7 +148,10 @@
           families and 18,450 rollouts. Perceptual memory systems improve
           success sharply when the relevant session is nearby, but the benefit
           decays as distractor sessions accumulate, and current systems largely
-          fail to sustain it across sessions.
+          fail to sustain it across sessions. A simple retrieval step added to
+          the same policy recovers that benefit across interference levels, which
+          shows the relevant session is still usable in the buffer and only needs
+          to be separated from the others.
         </p>
       </section>
 
@@ -160,6 +185,14 @@
             interference (<code>&minus;26&nbsp;pp</code> by <code>k7</code>), while
             recurrent variants stay near baseline. Systems that look strong at
             short range can collapse across sessions.
+          </li>
+          <li>
+            <strong>The decay is recoverable.</strong>
+            Retrieval-FrameSamp-Modul, which chunks the history with visual
+            embeddings and passes only the matching chunk to the policy, stays
+            near <code>45%</code> under <code>k7</code> interference where
+            FrameSamp-Modul falls to <code>19.3%</code>, and recovers the
+            <code>k0</code> rate on seven of the nine families.
           </li>
         </ul>
       </section>
@@ -383,6 +416,44 @@
         </div>
         <p class="note">
           Success rates across all nine families.
+        </p>
+      </section>
+
+      <section id="baseline">
+        <h2>Adding Retrieval</h2>
+        <p>
+          The benchmark systems sample the whole history down to a fixed set of
+          frames, so once other sessions are present, only a few of those frames
+          come from the relevant demonstration, which is the likely cause of the
+          performance drop. To fix this, Retrieval-FrameSamp-Modul adds a
+          retrieval step to FrameSamp-Modul: it chunks the history using visual
+          embeddings, finds the chunk that matches the current view, and passes
+          only that chunk on. The full frame sampling budget then goes to the
+          demonstration.
+        </p>
+        <p>
+          This holds the <code>k0</code> success rate through <code>k7</code>
+          on seven of the nine families. Where FrameSamp-Modul falls from
+          <code>45.3%</code> at <code>k0</code> to <code>19.3%</code> at
+          <code>k7</code>, Retrieval-FrameSamp-Modul stays near <code>45%</code>
+          the whole way.
+        </p>
+        <figure>
+          <img
+            src="assets/perfamily_retrieval_baseline.png?v=3"
+            alt="Per-family success across memory systems, with Retrieval-FrameSamp-Modul"
+          />
+          <figcaption>
+            Per-family success across the released memory systems, with
+            Retrieval-FrameSamp-Modul in black. It holds its <code>k0</code> rate
+            as unrelated sessions accumulate, while the released systems decay.
+            The dashed line is the &pi;<sub>0.5</sub> baseline.
+          </figcaption>
+        </figure>
+        <p>
+          Retrieval is easy in this setup. The matching demonstration is always
+          present and shares the query's task family, so a visual match reliably
+          finds it.
         </p>
       </section>
 

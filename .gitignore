@@ -16,3 +16,6 @@ __pycache__/
 .idea/
 .vscode/
 
+
+# Local Claude Code artifacts
+.claude/
