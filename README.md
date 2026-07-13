@@ -59,7 +59,7 @@ This holds the `k0` success rate through `k7` on seven of the nine families. Whe
 
 ![Per-family success across the released memory systems, with Retrieval-FrameSamp-Modul](results/analysis/figures/perfamily_retrieval_baseline.png)
 
-Retrieval is easy in this setup. The lesson session is always present and shares the query's task family, so a visual match reliably finds it. The rollouts are in `results/retrieval_rollouts.csv`.
+Retrieval is easy in this setup. The lesson session is always present and shares the query's task family, so a visual match reliably finds it. The rollouts are in `results/retrieval_rollouts.csv`. The retrieval scripts are in [`retrieval/`](retrieval).
 
 ## Repository layout
 
@@ -68,9 +68,11 @@ Retrieval is easy in this setup. The lesson session is always present and shares
 ├── index.html, research.css, showcase.js   # project website (served via GitHub Pages)
 ├── results/
 │   ├── canonical_rollouts.csv               # 18,450 rollouts — source of truth
+│   ├── retrieval_rollouts.csv               # Retrieval-FrameSamp-Modul, one row per episode
 │   ├── coverage.csv, grid_summary.csv, by_family_condition.csv, by_difficulty.csv
 │   ├── MANIFEST.json, SHA256SUMS, README.md
 │   └── analysis/                            # generated tables, figures, and README
+├── retrieval/                               # SigLIP embedding + segmentation + chunk scoring
 ├── scripts/
 │   ├── analyze_cross_session_results.py     # rebuild the analysis package
 │   └── create_cross_session_protocol_figure.py
