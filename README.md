@@ -1,4 +1,4 @@
-# Benchmarking Robot Memory Under Interference
+# RoboMME-Interference: Benchmarking Robot Memory Under Interference
 
 [![arXiv](https://img.shields.io/badge/arXiv-2606.22338-b31b1b.svg)](https://arxiv.org/abs/2606.22338) [![Website](https://img.shields.io/badge/Website-robotmemorybench.com-1f6feb.svg)](https://robotmemorybench.com)
 

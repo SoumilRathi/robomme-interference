@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this benchmark or result package, please cite it."
-title: "Benchmarking Robot Memory Under Interference"
+title: "RoboMME-Interference: Benchmarking Robot Memory Under Interference"
 authors:
   - family-names: "Rathi"
     given-names: "Soumil"
@@ -9,7 +9,7 @@ repository-code: "https://github.com/SoumilRathi/robomme-interference"
 url: "https://robotmemorybench.com"
 preferred-citation:
   type: article
-  title: "Benchmarking Robot Memory Under Interference"
+  title: "RoboMME-Interference: Benchmarking Robot Memory Under Interference"
   authors:
     - family-names: "Rathi"
       given-names: "Soumil"
