@@ -2,7 +2,7 @@
 
 [![arXiv](https://img.shields.io/badge/arXiv-2606.22338-b31b1b.svg)](https://arxiv.org/abs/2606.22338) [![Website](https://img.shields.io/badge/Website-robotmemorybench.com-1f6feb.svg)](https://robotmemorybench.com)
 
-A cross-session benchmark for memory-augmented vision-language-action policies.
+A cross-session benchmark for memory-augmented VLAs.
 
 Robots that run for days accumulate experience across many sessions, users, and tasks. A useful memory system has to hold onto a relevant past session even when unrelated sessions pile up in between. This benchmark measures that directly: it places a relevant *lesson* session in the policy's history, inserts *k* unrelated distractor sessions after it, and tests whether the policy can still use the lesson to solve the current task.
 
