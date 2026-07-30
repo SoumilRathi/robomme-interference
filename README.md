@@ -19,7 +19,7 @@ Memory helps most when the lesson is the most recent session (`k0`) and decays b
 ## At a glance
 
 - **Conditions:** `no-history`, `k0`, `k1`, `k3`, `k7` — the number of unrelated sessions sitting between the lesson and the query.
-- **Grid:** 9 task families × 9 systems × 5 conditions × 50 episodes = **18,450 rollouts** (369 / 369 cells complete).
+- **Grid:** 9 task families × 5 conditions × 50 episodes for each of 8 memory systems, plus the π₀.₅ baseline with no history: **18,450 rollouts** (369 / 369 cells complete).
 - **Finding:** perceptual memory systems improve success sharply when the relevant session is recent, then decay to the no-memory baseline as unrelated sessions accumulate. Recurrent variants stay flat throughout.
 - **Recovering it:** Retrieval-FrameSamp-Modul retrieves only the matching session instead of sampling the whole history, and stays near `45%` at `k7` where FrameSamp-Modul falls to `19.3%`.
 
