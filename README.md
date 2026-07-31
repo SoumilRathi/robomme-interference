@@ -14,7 +14,7 @@ Memory helps most when the lesson is the most recent session (`k0`) and decays b
 
 - **Website:** https://robotmemorybench.com
 - **Paper:** [arXiv:2606.22338](https://arxiv.org/abs/2606.22338) — the full method and protocol
-- **Data:** [`results/canonical_rollouts.csv`](results/canonical_rollouts.csv) — every rollout, the source of truth
+- **Data:** [`results/canonical_rollouts.csv`](results/canonical_rollouts.csv) — every rollout, the source of truth; also on [Hugging Face](https://huggingface.co/datasets/SoumilR/robomme-interference) as `SoumilR/robomme-interference`
 
 ## At a glance
 
