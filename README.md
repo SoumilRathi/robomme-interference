@@ -1,6 +1,6 @@
 # RoboMME-Interference: Benchmarking Robot Memory Under Interference
 
-[![arXiv](https://img.shields.io/badge/arXiv-2606.22338-b31b1b.svg)](https://arxiv.org/abs/2606.22338) [![Website](https://img.shields.io/badge/Website-robotmemorybench.com-1f6feb.svg)](https://robotmemorybench.com)
+[![arXiv](https://img.shields.io/badge/arXiv-2606.22338-b31b1b.svg)](https://arxiv.org/abs/2606.22338) [![Website](https://img.shields.io/badge/Website-robotmemorybench.com-1f6feb.svg)](https://robotmemorybench.com) [![Dataset](https://img.shields.io/badge/Dataset-Hugging%20Face-ffd21e.svg)](https://huggingface.co/datasets/SoumilR/robomme-interference)
 
 A cross-session benchmark for memory-augmented VLAs.
 
